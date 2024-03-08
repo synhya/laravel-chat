@@ -15,10 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->integer('likes')->default(0);
-            $table->unsignedBigInteger('imageable_id');
-            $table->string('imageable_type');
-            $table->foreign('imageable_id')->references('id')->on('chirps')->cascadeOnDelete();
-            $table->foreign('imageable_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->morphs('imageable');
             $table->timestamps();
         });
     }
